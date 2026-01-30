@@ -26,4 +26,11 @@ class StoreCurrencyRequest extends FormRequest
             'code' => ['required', 'string', 'max:5', 'unique:currencies,code']
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'code.unique' => 'Валюта с таким кодом уже существует'
+        ];
+    }
 }
