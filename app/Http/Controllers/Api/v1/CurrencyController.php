@@ -43,7 +43,11 @@ class CurrencyController extends Controller
      */
     public function update(UpdateCurrencyRequest $request, Currency $currency)
     {
-        //
+        $currency->update($request->validated());
+        return response()->json([
+            'message' => 'Запись успешна обновлена',
+            'data' => new CurrencyResource($currency)
+        ], 200);
     }
 
     /**
@@ -51,6 +55,9 @@ class CurrencyController extends Controller
      */
     public function destroy(Currency $currency)
     {
-        //
+        $currency->delete();
+        return response()->json([
+            'message' => 'Запись успешна удалена'
+        ], 204);
     }
 }
