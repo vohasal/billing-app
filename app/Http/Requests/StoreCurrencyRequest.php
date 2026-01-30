@@ -23,7 +23,7 @@ class StoreCurrencyRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:125'],
-            'code' => ['required', 'string', 'max:5']
+            'code' => ['required', 'string', 'max:5', 'unique:currencies,code']
         ];
     }
 }
