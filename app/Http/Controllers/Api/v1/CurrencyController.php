@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\v1;
 
+use App\Http\Resources\CurrencyResource;
 use App\Models\Currency;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCurrencyRequest;
@@ -22,7 +23,11 @@ class CurrencyController extends Controller
      */
     public function store(StoreCurrencyRequest $request)
     {
-        //
+        $currency = Currency::query()->create($request->validated());
+        return response()->json([
+            'message' => 'Валюта успешна создана',
+            'data' => new CurrencyResource($currency)
+        ], 201);
     }
 
     /**
@@ -30,7 +35,7 @@ class CurrencyController extends Controller
      */
     public function show(Currency $currency)
     {
-        //
+        return new CurrencyResource($currency);
     }
 
     /**
