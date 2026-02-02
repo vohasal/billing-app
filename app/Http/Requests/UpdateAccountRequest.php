@@ -22,7 +22,8 @@ class UpdateAccountRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => ['string', 'max:255'],
+            'currency_id' => ['integer', 'exists:currencies,id']
         ];
     }
 }
