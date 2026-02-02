@@ -44,7 +44,14 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        //
+        if ($category->user_id !== $request->user()->id){
+            abort(403, "Вы не можете менять чужую категорию");
+        }
+        $category->update($request->validated());
+        return response()->json([
+            'message' => 'Запись успешно обновлена',
+            'data' => new CategoryResource($category)
+        ], 200);
     }
 
     /**
