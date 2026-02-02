@@ -18,7 +18,7 @@ class AccountResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'amount' => $this->amount,
-            'currency' => new CurrencyResource($this->currency)
+            'currency' => $this->currency_id
         ];
     }
 }
