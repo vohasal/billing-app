@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Account;
 use App\Models\Category;
+use App\Models\Currency;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -23,7 +24,8 @@ class TransactionFactory extends Factory
             'date' => fake()->date(),
             'description' => fake()->text(30),
             'category_id' => Category::query()->inRandomOrder()->first()->id,
-            'account_id' => Account::query()->inRandomOrder()->first()->id
+            'account_id' => Account::query()->inRandomOrder()->first()->id,
+            'currency_id' => Currency::query()->inRandomOrder()->first()->id
         ];
     }
 }
