@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\v1;
 
+use App\Http\Resources\AccountResource;
 use App\Models\Account;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreAccountRequest;
@@ -22,7 +23,12 @@ class AccountController extends Controller
      */
     public function store(StoreAccountRequest $request)
     {
-        //
+        $account = $request->user()->accounts()->create($request->validated());
+
+        return response()->json([
+            'message' => 'Запись успешна создана',
+            'data' => new AccountResource($account)
+        ]);
     }
 
     /**
