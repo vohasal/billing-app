@@ -44,7 +44,17 @@ class AccountController extends Controller
      */
     public function update(UpdateAccountRequest $request, Account $account)
     {
-        //
+        if ($account->user_id !== $request->user()->id){
+            return response()->json([
+                'message' => 'Это не ваш счет'
+            ], 403);
+        }
+
+        $account->update($request->validated());
+        return response()->json([
+            'message' => 'Запись успешно обновлена',
+            'data' => new AccountResource($account)
+        ]);
     }
 
     /**
