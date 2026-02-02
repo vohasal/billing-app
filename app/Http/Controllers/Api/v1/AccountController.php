@@ -62,6 +62,9 @@ class AccountController extends Controller
      */
     public function destroy(Account $account)
     {
-        //
+        $account->delete();
+        return response()->json([
+            'message' => 'Запись успешно удалена'
+        ], 204);
     }
 }
