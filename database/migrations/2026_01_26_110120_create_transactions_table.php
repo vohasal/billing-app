@@ -25,6 +25,10 @@ return new class extends Migration
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
             $table->timestamps();
+            $table->foreignId('currency_id')
+                ->constrained('currencies')
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
         });
     }
 
