@@ -44,7 +44,12 @@ class TransactionController extends Controller
      */
     public function update(UpdateTransactionRequest $request, Transaction $transaction)
     {
-        //
+        $transaction->update($request->validated());
+
+        return response()->json([
+            'message' => 'Запись успешна обновлена',
+            'data' => new TransactionResource($transaction)
+        ], 200);
     }
 
     /**
