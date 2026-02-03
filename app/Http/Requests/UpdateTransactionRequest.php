@@ -2,7 +2,11 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Account;
+use App\Models\Category;
+use App\Models\Currency;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateTransactionRequest extends FormRequest
 {
@@ -22,7 +26,12 @@ class UpdateTransactionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'amount' => ['numeric', 'min:0'],
+            'date' => ['date'],
+            'description' => ['nullable', 'string'],
+            'category_id' => ['integer', Rule::exists(Category::class, 'id')],
+            'account_id' => ['integer', Rule::exists(Account::class, 'id')],
+            'currency_id' => ['integer', Rule::exists(Currency::class, 'id')]
         ];
     }
 }
