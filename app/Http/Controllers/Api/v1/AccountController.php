@@ -28,7 +28,7 @@ class AccountController extends Controller
         return response()->json([
             'message' => 'Запись успешна создана',
             'data' => new AccountResource($account)
-        ]);
+        ], 201);
     }
 
     /**
