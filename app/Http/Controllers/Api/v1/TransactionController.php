@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\v1;
 
+use App\Http\Resources\TransactionResource;
 use App\Models\Transaction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreTransactionRequest;
@@ -22,7 +23,12 @@ class TransactionController extends Controller
      */
     public function store(StoreTransactionRequest $request)
     {
-        //
+        $transaction = Transaction::query()->create($request->validated());
+
+        return response()->json([
+            'message' => 'Запись успешно добавлена',
+            'data' => new TransactionResource($transaction)
+        ], 201);
     }
 
     /**
