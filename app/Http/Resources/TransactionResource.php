@@ -2,8 +2,13 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+
+/**
+ * @property-read Transaction $resource
+ */
 
 class TransactionResource extends JsonResource
 {
@@ -14,6 +19,13 @@ class TransactionResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'amount' => $this->resource->amount,
+            'date' => $this->resource->date,
+            'description' => $this->resource->description,
+            'category_id' => $this->resource->category_id,
+            'account_id' => $this->resource->account_id,
+            'currency_id' => $this->resource->currency_id
+        ];
     }
 }
