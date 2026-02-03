@@ -36,7 +36,7 @@ class TransactionController extends Controller
      */
     public function show(Transaction $transaction)
     {
-        //
+        return new TransactionResource($transaction);
     }
 
     /**
