@@ -2,9 +2,13 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Account;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @property-read Account $resource
+ */
 class AccountResource extends JsonResource
 {
     /**
@@ -15,10 +19,10 @@ class AccountResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id' => $this->id,
-            'name' => $this->name,
-            'amount' => $this->amount,
-            'currency' => $this->currency_id
+            'id' => $this->resource->id,
+            'name' => $this->resource->name,
+            'amount' => $this->resource->amount,
+            'currency' => $this->resource->currency_id
         ];
     }
 }
