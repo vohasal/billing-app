@@ -18,7 +18,7 @@ Route::prefix('v1')->group(function (){
     Route::post('login', [AuthController::class, 'login']);
 });
 
-Route::prefix('v1')->middleware(['auth:sanctum'])->group(function (){
+Route::prefix('v1')->middleware(['auth:sanctum', 'throttle:api'])->group(function (){
     Route::apiResource("categories", CategoryController::class);
     Route::apiResource("currencies", CurrencyController::class);
     Route::apiResource("accounts", AccountController::class);
