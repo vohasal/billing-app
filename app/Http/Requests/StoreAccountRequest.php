@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Currency;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreAccountRequest extends FormRequest
 {
@@ -24,7 +26,7 @@ class StoreAccountRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:255'],
             'amount' => ['required', 'numeric', 'min:0'],
-            'currency_id' => ['required', 'integer', 'exists:currencies,id']
+            'currency_id' => ['required', 'integer', Rule::exists(Currency::class, 'id')]
         ];
     }
 }
