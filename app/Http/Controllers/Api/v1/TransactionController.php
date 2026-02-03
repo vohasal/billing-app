@@ -15,7 +15,9 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        return Transaction::all();
+        return Transaction::orderBy('date', 'desc')
+            ->orderBy('id', 'desc')
+            ->cursorPaginate(5);
     }
 
     /**
