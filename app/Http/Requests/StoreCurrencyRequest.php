@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreCurrencyRequest extends FormRequest
 {
@@ -23,7 +24,7 @@ class StoreCurrencyRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:125'],
-            'code' => ['required', 'string', 'max:5', 'unique:currencies,code']
+            'code' => ['required', 'string', 'max:5', Rule::unique('currencies', 'code')]
         ];
     }
 
