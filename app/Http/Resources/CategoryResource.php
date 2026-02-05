@@ -22,7 +22,7 @@ class CategoryResource extends JsonResource
         return [
             'id' => $this->resource->id,
             'name' => $this->resource->name,
-            'type' => $this->resource->type,
+            'type' => $this->resource->type->label(),
             'created_at' => $this->resource->created_at->toDateTimeString(),
             'updated_at' => $this->resource->updated_at->toDateTimeString()
         ];
