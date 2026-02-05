@@ -25,7 +25,9 @@ class TransactionResource extends JsonResource
             'description' => $this->resource->description,
             'category_id' => $this->resource->category_id,
             'account_id' => $this->resource->account_id,
-            'currency_id' => $this->resource->currency_id
+            'currency_id' => $this->resource->currency_id,
+            "created_at" => $this->resource->created_at->toDateTimeString(),
+            "updated_at" => $this->resource->updated_at->toDateTimeString()
         ];
     }
 }

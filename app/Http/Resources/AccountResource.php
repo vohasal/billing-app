@@ -22,7 +22,9 @@ class AccountResource extends JsonResource
             'id' => $this->resource->id,
             'name' => $this->resource->name,
             'amount' => $this->resource->amount,
-            'currency' => $this->resource->currency_id
+            'currency' => $this->resource->currency_id,
+            "created_at" => $this->resource->created_at->toDateTimeString(),
+            "updated_at" => $this->resource->updated_at->toDateTimeString()
         ];
     }
 }
