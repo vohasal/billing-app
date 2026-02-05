@@ -50,8 +50,8 @@ class TransactionController extends Controller
         $sortDir = $request->input('sort_dir', 'desc');
 
 
-        return $query->orderBy($sortBy, $sortDir)
-            ->paginate(15);
+        return TransactionResource::collection($query->orderBy($sortBy, $sortDir)
+            ->paginate(15));
     }
 
     /**
