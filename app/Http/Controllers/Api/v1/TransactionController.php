@@ -20,8 +20,8 @@ class TransactionController extends Controller
 
         $query = Transaction::with(['category', 'account']);
 
-        $query->whereHas('account', function ($q){
-            $q->where('user_id', Auth::id());
+        $query->whereHas('account', function ($q) use ($request){
+            $q->where('user_id', $request->user()->id);
         });
 
         $query->when($request->date_from, function ($q, $dateFrom) {
