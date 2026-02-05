@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Enums\CategoryType;
+use App\Enums\CategoryTypeEnum;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -25,7 +25,7 @@ class StoreCategoryRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'type' => ['required', Rule::enum(CategoryType::class)]
+            'type' => ['required', Rule::enum(CategoryTypeEnum::class)]
         ];
     }
 }

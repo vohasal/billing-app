@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Enums\CategoryType;
+use App\Enums\CategoryTypeEnum;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -20,7 +20,7 @@ class CategoryFactory extends Factory
     {
         return [
             'name' => fake()->numerify('Category##'),
-            'type'  => fake()->randomElement(CategoryType::cases()),
+            'type'  => fake()->randomElement(CategoryTypeEnum::cases()),
             'user_id' => User::query()->inRandomOrder()->first()->id
         ];
     }
