@@ -23,7 +23,7 @@ class TransactionResource extends JsonResource
             'amount' => $this->resource->amount,
             'date' => $this->resource->date,
             'description' => $this->resource->description,
-            'category_id' => $this->resource->category_id,
+            'category_id' => new CategoryResource($this->whenLoaded('category')),
             'account_id' => $this->resource->account_id,
             'currency_id' => $this->resource->currency_id,
             "created_at" => $this->resource->created_at->toDateTimeString(),
