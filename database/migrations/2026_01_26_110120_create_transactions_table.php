@@ -29,6 +29,7 @@ return new class extends Migration
                 ->constrained('currencies')
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
+            $table->softDeletes();
         });
     }
 
