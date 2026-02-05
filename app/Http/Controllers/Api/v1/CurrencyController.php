@@ -15,7 +15,7 @@ class CurrencyController extends Controller
      */
     public function index()
     {
-        return Currency::all();
+        return CurrencyResource::collection(Currency::all());
     }
 
     /**
