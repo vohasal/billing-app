@@ -60,6 +60,7 @@ class TransactionController extends Controller
     public function store(StoreTransactionRequest $request)
     {
         $transaction = Transaction::query()->create($request->validated());
+        $transaction->load(['category']);
 
         return response()->json([
             'message' => 'Запись успешно добавлена',
@@ -72,6 +73,7 @@ class TransactionController extends Controller
      */
     public function show(Transaction $transaction)
     {
+        $transaction->loadMissing(['category']);
         return new TransactionResource($transaction);
     }
 
@@ -81,6 +83,7 @@ class TransactionController extends Controller
     public function update(UpdateTransactionRequest $request, Transaction $transaction)
     {
         $transaction->update($request->validated());
+        $transaction->load(['category']);
 
         return response()->json([
             'message' => 'Запись успешна обновлена',
