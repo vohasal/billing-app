@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Api\v1;
 
+use App\DTO\UserDTO;
+use App\Events\UserRegistered;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginUserRequest;
 use App\Http\Requests\StoreUserRequest;
@@ -13,7 +15,11 @@ class AuthController extends Controller
 {
     public function register(StoreUserRequest $request)
     {
-        return User::query()->create($request->validated());
+        $user = User::query()->create($request->validated());
+
+        $userDto = UserDTO::from($user->toArray());
+        event(new UserRegistered($userDto));
+        return $user;
     }
 
     public function login(LoginUserRequest $request)
